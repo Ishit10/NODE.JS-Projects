@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Management</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        color: #4CAF50;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="file"],
+      button {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 30px;
+      }
+
+      th, td {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      img {
+        border-radius: 5px;
+      }
+
+      .action-btn {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-right: 5px;
+      }
+
+      .delete-btn {
+        background-color: #f44336;
+        color: white;
+      }
+
+      .edit-btn {
+        background-color: #2196F3;
+        color: white;
+      }
+
+      .delete-btn:hover {
+        background-color: #d32f2f;
+      }
+
+      .edit-btn:hover {
+        background-color: #1976d2;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 10px;
+        }
+
+        table {
+          font-size: 14px;
+        }
+
+        .action-btn {
+          padding: 6px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Book Management</h1>
+      <form action="/addData" method="post" enctype="multipart/form-data">
+        <input type="text" placeholder="Enter Book Name" name="userName" required />
+        <input type="text" placeholder="Enter Author Name" name="author" required />
+        <input type="number" placeholder="Enter Price" name="price" required />
+        <input type="file" name="image" />
+        <button type="submit">Submit</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% userData.map((user) => { %>
+          <tr>
+            <td><%= user.userName %></td>
+            <td><%= user.author %></td>
+            <td><%= user.price %></td>
+            <td><img src="<%= user.image %>" height="60" width="auto" alt="Book Image"></td>
+            <td>
+              <a href="/deleteData/<%= user.id %>"><button class="action-btn delete-btn">Delete</button></a>
+              <a href="/editData/<%= user.id %>"><button class="action-btn edit-btn">Edit</button></a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
