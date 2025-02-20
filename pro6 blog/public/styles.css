@@ -69,3 +69,24 @@ input:focus, textarea:focus {
 .text-danger {
     font-weight: bold;
 }
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.card {
+    border-radius: 12px;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.btn {
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+

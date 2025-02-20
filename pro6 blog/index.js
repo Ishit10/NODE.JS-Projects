@@ -6,13 +6,17 @@ const app = express();
 const port = 8070;
 const connection = require("./config/db");
 const adminRouter = require("./routers/AdminRouter");
+const productRouter = require("./routers/ProductRouter"); 
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "ejs");
+
 app.use("/", adminRouter);
+app.use("/products", productRouter); 
 
 connection();
 
