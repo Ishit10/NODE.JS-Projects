@@ -15,6 +15,7 @@ exports.postLogin = async (req, res) => {
         }
 
         res.cookie("user", { email }, { httpOnly: true });
+        console.log(req.cookies.user);
         res.redirect("/dashboard");
     } catch (error) {
         console.error(error);

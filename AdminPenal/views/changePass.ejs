@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Password</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            text-align: center;
+            width: 350px;
+            color: white;
+        }
+        h2 {
+            margin-bottom: 15px;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .toggle-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: white;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #ff4b2b;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ff6f61;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Update Password</h2>
+        <form id="passwordForm" action="/updatepass" method="post">
+            <div class="input-group">
+                <input type="password" name="old_password" id="oldPassword" placeholder="Enter Old Password" required>
+                <span class="toggle-btn" onclick="togglePassword('oldPassword')">👁</span>
+            </div>
+            <div class="input-group">
+                <input type="password" name="new_password" id="newPassword" placeholder="Enter New Password" required>
+                <span class="toggle-btn" onclick="togglePassword('newPassword')">👁</span>
+            </div>
+            <div class="input-group">
+                <input type="password" name="Confirm_new_password" id="confirmPassword" placeholder="Confirm Password" required>
+                <span class="toggle-btn" onclick="togglePassword('confirmPassword')">👁</span>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+    <script>
+        function togglePassword(id) {
+            var input = document.getElementById(id);
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>
