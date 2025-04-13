@@ -1,0 +1,85 @@
+<%- include('navbar', { user }) %>
+<link rel="stylesheet" href="/style.css">
+
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    flex-direction: column;
+    padding: 20px;
+    margin: 0;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #4caf50;
+    margin-bottom: 30px;
+  }
+
+  .task-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-width: 800px;
+  }
+
+  .task-list li {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+
+  .task-list li:hover {
+    transform: scale(1.02);
+  }
+
+  .task-list li strong {
+    font-size: 18px;
+    color: #333;
+  }
+
+  .task-list li a {
+    text-decoration: none;
+    color: #e74c3c;
+    font-size: 18px;
+    transition: color 0.3s ease;
+  }
+
+  .task-list li a:hover {
+    color: #c0392b;
+  }
+
+  .category {
+    background-color: #f1f1f1;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+  }
+</style>
+
+<h2>Task List</h2>
+<ul class="task-list">
+  <% tasks.forEach(task => { %>
+    <li>
+      <div>
+        <strong><%= task.title %></strong> - <%= task.description %>
+        <% if (task.category) { %>
+          <span class="category"><%= task.category.name %></span>
+        <% } %>
+      </div>
+      <a href="/tasks/delete/<%= task._id %>">Delete</a>
+    </li>
+  <% }) %>
+</ul>

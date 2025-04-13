@@ -1,0 +1,102 @@
+<%- include('navbar', { user }) %>
+<link rel="stylesheet" href="/style.css">
+
+<style>
+  .dashboard-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .section-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #222;
+    margin-top: 30px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+  }
+
+  .list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+
+  .list-item {
+    background-color: #f6f8fc;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    border-left: 4px solid #5c6bc0;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .list-item:hover {
+    background-color: #eef1f7;
+    transform: translateY(-3px);
+  }
+
+  .task-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .task-meta {
+    color: #666;
+    font-size: 14px;
+  }
+
+  .delete-btn {
+    float: right;
+    text-decoration: none;
+    color: #e53935;
+    font-weight: bold;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<div class="dashboard-container">
+  <h2 class="section-title">Admin Dashboard</h2>
+
+  <h3 class="section-title">All Tasks</h3>
+  <ul class="list">
+    <% tasks.forEach(task => { %>
+      <li class="list-item">
+        <div class="task-title"><%= task.title %></div>
+        <div class="task-meta">
+          <%= task.description %> | User: <%= task.user.username %>
+          <% if (task.category) { %>
+            | Category: <%= task.category.name %>
+          <% } %>
+          <a class="delete-btn" href="/tasks/delete/<%= task._id %>">Delete</a>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+
+  <h3 class="section-title">All Users</h3>
+  <ul class="list">
+    <% users.forEach(u => { %>
+      <li class="list-item">
+        <div class="task-title"><%= u.username %></div>
+        <div class="task-meta">Role: <%= u.role %></div>
+      </li>
+    <% }) %>
+  </ul>
+</div>

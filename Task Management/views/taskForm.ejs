@@ -1,0 +1,103 @@
+<%- include('navbar', { user }) %>
+
+<link rel="stylesheet" href="/style.css">
+
+<style>
+  /* Body Styling */
+  body {
+    font-family: 'Arial', sans-serif;
+    /* margin: 0;
+    padding: 0; */
+    background: linear-gradient(135deg, #56ccf2, #2f80ed);
+    height: 100vh;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+  }
+
+  /* Form Container */
+  .create-task-container {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 40px 50px;
+    border-radius: 10px;
+    width: full;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-in-out;
+  }
+
+  /* Heading Style */
+  h2 {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Form Fields Styling */
+  input[type="text"], select {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease-in-out;
+  }
+
+  input[type="text"]:focus, select:focus {
+    border-color: #2f80ed;
+    background-color: #e3f2fd;
+    outline: none;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+    background-color: #2f80ed;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #1a66cc;
+  }
+
+  /* Animation for Form */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Small Screen Adjustments */
+  @media (max-width: 768px) {
+    .create-task-container {
+      width: 100%;
+      padding: 20px;
+    }
+  }
+</style>
+
+<div class="create-task-container">
+  <h2>Create Task</h2>
+  <form action="/tasks" method="POST">
+    <input type="text" name="title" placeholder="Task Title" required />
+    <input type="text" name="description" placeholder="Task Description" required />
+    <select name="category">
+      <% categories.forEach(cat => { %>
+        <option value="<%= cat._id %>"><%= cat.name %></option>
+      <% }) %>
+    </select>
+    <button type="submit">Create Task</button>
+  </form>
+</div>
